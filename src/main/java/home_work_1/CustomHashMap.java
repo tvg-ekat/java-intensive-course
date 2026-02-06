@@ -5,7 +5,7 @@ import java.util.Objects;
 public final class CustomHashMap<K, V>{
     private static final int SIZE_MAP = 8;
     private int size;
-    Node<K, V>[] table;
+    private Node<K, V>[] table;
 
     static class Node<K,V> {
         final K key;
@@ -87,6 +87,14 @@ public final class CustomHashMap<K, V>{
             node = node.next;
         }
         return null;
+    }
+
+    public void clear(){
+        if(table != null && size > 0){
+            size = 0;
+            for(int i = 0; i < SIZE_MAP; i++)
+                table[i] = null;
+        }
     }
 
     private int getIndex(K key){
