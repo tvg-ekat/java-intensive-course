@@ -9,14 +9,18 @@ import java.util.Optional;
 
 public class UserService {
 
-    private final UserDao userDao = new UserDaoPsqlImpl();
+    private final UserDao userDao;
+
+    public UserService(UserDao userDao){
+        this.userDao = userDao;
+    }
 
     public Optional<User> findUser(long id){
         return userDao.findById(id);
     }
 
-    public void saveUser(User user){
-        userDao.save(user);
+    public User saveUser(User user){
+        return userDao.save(user);
     }
 
     public void deleteUser(User user){

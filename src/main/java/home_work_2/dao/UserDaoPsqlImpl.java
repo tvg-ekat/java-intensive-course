@@ -21,7 +21,7 @@ public class UserDaoPsqlImpl implements UserDao{
     };
 
     @Override
-    public void save(User user) {
+    public User save(User user) {
         user.setCreated_at(LocalDateTime.now());
         Transaction transaction = null;
         try(Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()){
@@ -30,6 +30,7 @@ public class UserDaoPsqlImpl implements UserDao{
             session.persist(user);
             transaction.commit();
             logger.info("Пользователь {} успешно создан", user.getName());
+            return user;
         } catch (Exception e){
             if(transaction != null){
                 transaction.rollback();

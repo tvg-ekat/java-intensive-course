@@ -31,6 +31,10 @@ public class HibernateSessionFactoryUtil {
         return sessionFactory;
     }
 
+    public static void setSessionFactory(SessionFactory factory){
+        sessionFactory = factory;
+    }
+
     public static void shutdown() throws Exception {
         if(sessionFactory != null){
             getSessionFactory().close();

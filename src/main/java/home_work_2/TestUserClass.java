@@ -14,7 +14,7 @@ import static home_work_2.utils.AnsiColors.*;
 
 public class TestUserClass {
 
-    private static final UserService userService = new UserService();
+    private static final UserService userService = new UserService(new UserDaoPsqlImpl());
     private static final Scanner scanner = new Scanner(System.in);
 
     private enum LogLevel{

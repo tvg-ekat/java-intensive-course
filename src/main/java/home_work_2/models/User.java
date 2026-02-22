@@ -10,7 +10,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int id;
+    private Long id;
     private String name;
     private String email;
     private int age;
@@ -25,8 +25,9 @@ public class User {
         this.age = age;
     }
 
-    public void setId(int id) {
+    public User setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public void setName(String name) {
@@ -45,7 +46,7 @@ public class User {
         this.created_at = created_at;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -63,6 +64,21 @@ public class User {
 
     public LocalDateTime getCreated_at() {
         return created_at;
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if(other == null || other.getClass() != User.class)
+            return false;
+
+        if(other == this)
+            return true;
+
+        User user = (User) other;
+        return user.id.equals(this.id) &&
+               user.name.equals(this.name) &&
+               user.email.equals(this.email) &&
+               user.age == this.age;
     }
 
     @Override

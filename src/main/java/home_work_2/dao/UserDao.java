@@ -8,7 +8,7 @@ import java.util.Optional;
  * CRUD interface for User
  */
 public interface UserDao {
-    void save(User user);
+    User save(User user);
     Optional<User> findById(Long id);
     List<User> findAll();
     void update(User user);
